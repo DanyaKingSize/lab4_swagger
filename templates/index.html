@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <header>
+      <div class="titles">
+        <h1>Books</h1>
+        <p class="subtitle">List of books</p>
+      </div>
+    </header>
+    <article class="body">
+      <div class="main-table">
+        <div class="table-block">
+          <table border="2px">
+            <tr>
+              <td>Name</td>
+              <td>Author</td>
+              <td>Genre</td>
+              <td>Volumes</td>
+              <td>Pages</td>
+            </tr>
+            {% for i in books %}
+            <tr>
+              <td>{{ i['book_name'] }}</td>
+              <td>{{ i['author'] }}</td>
+              <td>{{ i['genre'] }}</td>
+              <td>{{ i['amount_of_volumes'] }}</td>
+              <td>{{ i['amount_of_pages'] }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        {% if minmax[2] %}
+        <div class="minmax-block">
+          <p>Min: {{ minmax[0] }}</p>
+          <p>Max: {{ minmax[1] }}</p>
+          <p>Field: {{ minmax[2] }}</p>
+        </div>
+        {% endif %}
+      </div>
+      {% if genres %}
+      <div class="same-genre-block">
+        <h2>Genre: {{ genres[0]['genre'] }}</h2>
+        <table border="2px">
+          <tr>
+            <td>Name</td>
+            <td>Author</td>
+            <td>Genre</td>
+            <td>Volumes</td>
+            <td>Pages</td>
+          </tr>
+          {% for i in genres %}
+          <tr>
+            <td>{{ i['book_name'] }}</td>
+            <td>{{ i['author'] }}</td>
+            <td>{{ i['genre'] }}</td>
+            <td>{{ i['amount_of_volumes'] }}</td>
+            <td>{{ i['amount_of_pages'] }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {% endif %}
+    </article>
+  </body>
+</html>
